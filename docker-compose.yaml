@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  faster-whisper:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: faster-whisper-cpu
+    ports:
+      - "5000:5000"
+    environment:
+      - DEVICE=cpu
+      - MODEL_SIZE=small
+      - MODELS_CACHE=/root/.cache/whisper
+    volumes:
+      - whisper_models:/root/.cache/whisper
+
+volumes:
+  whisper_models:
